@@ -1,4 +1,5 @@
 App = {
+  loading: false,
   contracts: {},
 
   load: async () => {
@@ -22,7 +23,7 @@ App = {
       try {
         // Request account access if needed
         await ethereum.enable();
-        // Acccounts now exposed
+        // Accounts now exposed
         web3.eth.sendTransaction({
           /* ... */
         });
@@ -34,7 +35,7 @@ App = {
     else if (window.web3) {
       App.web3Provider = web3.currentProvider;
       window.web3 = new Web3(web3.currentProvider);
-      // Acccounts always exposed
+      // Accounts always exposed
       web3.eth.sendTransaction({
         /* ... */
       });
@@ -49,7 +50,7 @@ App = {
 
   loadAccount: async () => {
     // Set the current blockchain account
-    App.account = web3.eth.accounts[0];
+    web3.eth.defaultAccount = web3.eth.accounts[0];
     console.log(App.account);
   },
 
